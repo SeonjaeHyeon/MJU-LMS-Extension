@@ -21,10 +21,22 @@ window.onload = () => {
 
     const videoTimer = setInterval(() => {
         const video = content_viewer.contentDocument.querySelector('#test_player_html5_api');
+        const videoContainer = video.parentElement;
         if (video === null) {
             console.log('video null');
             return null;
         }
+        video.addEventListener('dblclick', () => {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (videoContainer.requestFullscreen) {
+                    videoContainer.requestFullscreen();
+                } else if (videoContainer.webkitRequestFullScreen) {
+                    videoContainer.webkitRequestFullScreen();
+                }
+            } else {
+                document.exitFullscreen();
+            }
+        });
 
         const video_src = video.src;
         if (video_src === '') {
