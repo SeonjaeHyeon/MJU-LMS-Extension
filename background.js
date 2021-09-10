@@ -1,5 +1,8 @@
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    const url = msg.url;
+    const { url, filename } = msg;
 
-    chrome.downloads.download({url: url});
+    chrome.downloads.download({
+        url: url,
+        filename: filename,
+    });
 });

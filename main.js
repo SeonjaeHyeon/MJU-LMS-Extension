@@ -37,11 +37,14 @@ window.onload = () => {
         download_btn.innerText = '영상 다운로드';
 
         const navi_table = document.querySelector('#naviViewer > div.navi-tables-container > ul');
+        const current_video = navi_table.querySelector('div.item-title-lesson.item-title-lesson-on').innerText.replace('/[\\/:*?"<>|]/g', '_') + '.mp4';
+        console.log(`Video name: ${current_video}`);
         navi_table.parentNode.insertBefore(download_btn, navi_table.nextSibling);
         
         download_btn.addEventListener('click', function() {
             const param = {
                 url: this.value,
+                filename: current_video,
             };
 
             chrome.runtime.sendMessage(param);
