@@ -22,6 +22,8 @@ window.onload = () => {
     const videoTimer = setInterval(() => {
         const video = content_viewer.contentDocument.querySelector('#test_player_html5_api');
         const videoContainer = video.parentElement;
+        const fullscreen_btn = content_viewer.contentDocument.querySelector('button.vjs-fullscreen-control.vjs-control.vjs-button');
+
         if (video === null) {
             console.log('video null');
             return null;
@@ -37,6 +39,7 @@ window.onload = () => {
                 document.exitFullscreen();
             }
         });
+        fullscreen_btn.style.display = 'inline-block';
 
         const video_src = video.src;
         if (video_src === '') {
