@@ -21,6 +21,7 @@ window.onload = () => {
 
     const videoTimer = setInterval(() => {
         const video = content_viewer.contentDocument.querySelector('#test_player_html5_api');
+        const source = video.querySelector('source');
         const videoContainer = video.parentElement;
         const fullscreen_btn = content_viewer.contentDocument.querySelector('button.vjs-fullscreen-control.vjs-control.vjs-button');
 
@@ -41,12 +42,12 @@ window.onload = () => {
         });
         fullscreen_btn.style.display = 'inline-block';
 
-        const video_src = video.src;
+        const video_src = video.src || source.src;
         if (video_src === '') {
             console.log('video src null');
             return null;
         }
-        console.log(`LMS video Found: ${video.src}`);
+        console.log(`LMS video Found: ${video_src}`);
         const download_btn = document.createElement('button');
         download_btn.value = video_src;
         download_btn.innerText = '영상 다운로드';
